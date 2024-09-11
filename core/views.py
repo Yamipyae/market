@@ -16,15 +16,13 @@ def contact(request):
 def signup(request):
     if request.method == 'POST':
         form = SingupForm(request.POST)
-
         if form.is_valid():
             form.save()
-
             return redirect('/login/')
-        else :
-            form = SingupForm()
+    else:
+        form = SingupForm()  # Initialize form here for GET requests
 
-    return render(request, 'core/signup.html',{
+    return render(request, 'core/signup.html', {
         'form': form
     })
 
